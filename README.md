@@ -1,3 +1,4 @@
+If you like this work, please star me, thanks.
 # CapsuleGNN
 A pytorch version of [CapsuleGNN](https://openreview.net/forum?id=Byl8BnRcYm)
 
@@ -9,6 +10,7 @@ pytorch
 sklearn
 
 ## How to use
-the runnable file is the main.py file, Capsule GNN model is defined in model.py, and a trainer method is defined in trainer.py for model training and testing
+the runnable file is the main.py file, Capsule GNN model is defined in model.py, and a trainer method is defined in trainer.py for model training and testing.
+
 
 
