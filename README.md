@@ -1,10 +1,7 @@
-If you like this work, please star me, thanks.
-
-If you meet any issues, just comment, I will check it asap.
+# CapsuleGNN
+A pytorch version of [Xinyi Z, Chen L. Capsule graph neural network[C], International conference on learning representations. 2018.](https://openreview.net/forum?id=Byl8BnRcYm)
 
 All the [dataset in torch-geometric](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html) can be used for this work.
-# CapsuleGNN
-A pytorch version of [CapsuleGNN](https://openreview.net/forum?id=Byl8BnRcYm)
 
 ## Dependencies
 
