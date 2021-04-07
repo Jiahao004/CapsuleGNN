@@ -30,7 +30,7 @@ class Model(nn.Module):
         self.n_class = n_class
         self.n_prim_caps = n_prim_caps
         assert gnn_dim // gnn_channel == caps_dim
-        self.gnn_net = GCNNet(node_dim, gnn_dim, n_gnn_layers, dropout_p)
+        self.gnn_net = GNNNet(node_dim, gnn_dim, n_gnn_layers, dropout_p)
         self.capsule_net = CapsuleNet(n_prim_caps, n_digit_caps, caps_dim, n_caps_layers, gnn_channel * n_gnn_layers,
                                       n_routing_iters, is_precaps_share)
         self.cls_net = DigitCapsuleLayer(n_caps_layers * n_digit_caps * gnn_channel, n_class, caps_dim, 1,
@@ -68,10 +68,10 @@ class Model(nn.Module):
         assert isinstance(predicted, torch.Tensor)
         val_predicted = torch.norm(predicted, p=2, dim=-1)
 
-        correct_predicted=[]
+        correct_predicted = []
         for i in range(batch_size):
-            correct_predicted.append(predicted[i,y[i]])
-        correct_predicted = torch.stack(correct_predicted, dim=0) #[batch, d_caps]
+            correct_predicted.append(predicted[i, y[i]])
+        correct_predicted = torch.stack(correct_predicted, dim=0)  # [batch, d_caps]
 
         assert isinstance(predicted, torch.Tensor)
         pred_hist = self.reconst_layer(correct_predicted)
@@ -97,9 +97,9 @@ class GNNLayer(nn.Module):
         return self.dropout(self.activation_func(self.gcn(x, edge_index)))
 
 
-class GCNNet(nn.Module):
+class GNNNet(nn.Module):
     def __init__(self, node_dim, gcn_dim, n_gcn_layers, dropout_p):
-        super(GCNNet, self).__init__()
+        super(GNNNet, self).__init__()
 
         self.d_model = gcn_dim
         self.dropout_p = dropout_p
@@ -275,7 +275,7 @@ def batch_histogram(x):
     # x: a batch of graph tensors(batch, [n_nodes_in_graph, node_dim])
     res = []
     for xx in x:
-        assert isinstance(xx, torch.Tensor) # xx :[n_nodes_in_graph, node_dim]
+        assert isinstance(xx, torch.Tensor)  # xx :[n_nodes_in_graph, node_dim]
         res.append((xx > 0).sum(dim=-2))
     return torch.stack(res, dim=0)
 
@@ -302,12 +302,12 @@ class ModelLoss(nn.Module):
         margin_loss = l_c.sum(dim=1).mean()
 
         assert isinstance(tgt_hist, torch.Tensor)
-        tgt_hist = tgt_hist/tgt_hist.max(dim=-1, keepdim=True)[0]
-        mp = (tgt_hist>epsilon).int()  # [batch, d_nodes]
+        tgt_hist = tgt_hist / tgt_hist.max(dim=-1, keepdim=True)[0]
+        mp = (tgt_hist > epsilon).int()  # [batch, d_nodes]
         diff = (pred_hist - tgt_hist) ** 2
 
-        reconst_loss = torch.sum(mp * diff, dim=-1) / (epsilon + mp.sum(dim=-1)) + torch.sum((1 - mp) * diff, dim=-1) / (
-                    1 + epsilon - mp).sum(dim=-1)
+        reconst_loss = torch.sum(mp * diff, dim=-1) / (epsilon + mp.sum(dim=-1)) + \
+                       torch.sum((1 - mp) * diff, dim=-1) / (1 - mp + epsilon).sum(dim=-1)
 
         loss = margin_loss + reconst_loss.mean()
         return loss
