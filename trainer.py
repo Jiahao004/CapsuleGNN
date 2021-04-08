@@ -3,7 +3,6 @@ import torch
 
 import logging
 
-import pandas as pd
 from tqdm import tqdm
 from sklearn.metrics import f1_score, accuracy_score
 from model import Model
@@ -27,6 +26,9 @@ class Trainer(object):
             if f1 > self.max_f1:
                 patience_count = 0
                 self.max_f1 = f1
+                self.f = f
+                self.ff = ff
+                self.a = a
                 self.save_model(model, output_path)
             else:
                 if self.patience:
@@ -41,6 +43,7 @@ class Trainer(object):
 
         logging.info('dev max f1:{:.4f}'.format(self.max_f1))
         print('dev max f1:{:.4f}'.format(self.max_f1))
+        return self.a, self.f, self.ff
 
     def train_epoch(self, model, trainloader):
         n_steps, epoch_loss = 0, 0

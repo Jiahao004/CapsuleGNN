@@ -14,17 +14,6 @@ from sklearn.model_selection import KFold
 import time
 
 seed = 12345
-lr = 1e-3
-
-channel = 2
-n_gnn_layers = 3
-n_prim_caps = 128
-n_digit_caps = 4
-n_caps_layers = 3
-n_routing_iters = 3
-is_share_channel = True
-dropout_p = 0.1
-
 random.seed(seed)
 
 def main():
@@ -42,6 +31,7 @@ def main():
     dataset, d_node, n_class = tupreparing(args.dataset_name, os.path.join(os.getcwd(), 'data'))
 
     kf = KFold(args.n_kfold, shuffle=True, random_state=seed)
+    A,F,FF=[],[],[]
     for i, (train_index, test_index) in enumerate(kf.split(dataset)):
         save_path = args.output_path + '/' + str(i)
         if not os.path.exists(save_path):
@@ -64,9 +54,15 @@ def main():
         else:
             trainloader = DataLoader(trainset, args.batch_size, shuffle=True)
             testloader = DataLoader(testset, args.batch_size, shuffle=True)
-            trainer.train(model, args.n_epoch, trainloader, testloader, save_path)
-    print('done')
+            a,f,ff=trainer.train(model, args.n_epoch, trainloader, testloader, save_path)
+            A.append(a)
+            F.append(f)
+            FF.append(ff)
 
+    print('done')
+    logging.info('done')
+    print('avg-a:{:.4f}, avg-macro-f1:{:.4f}, avg-micro-f1:{:.4f}'.format(sum(A)/len(A), sum(F)/len(F), sum(FF)/len(FF)))
+    logging.info('avg-a:{:.4f}, avg-macro-f1:{:.4f}, avg-micro-f1:{:.4f}'.format(sum(A)/len(A), sum(F)/len(F), sum(FF)/len(FF)))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -79,12 +75,13 @@ if __name__ == '__main__':
                         type=int, help='the batch size when training the epoch.')
 
     parser.add_argument('--dataset_name',
-                        default='ENZYMES',
-                        # default='MUTAG',
+                        # default='ENZYMES',
+                        default='MUTAG',
                         type=str, help='the name of the dataset.')
 
     parser.add_argument('--output_path',
-                        default='runs/debug',
+                        # default='ENZYMES',
+                        default='runs/MUTAG',
                         type=str, help='the output checkpoint file path', )
 
     parser.add_argument('--n_kfold',
@@ -92,7 +89,7 @@ if __name__ == '__main__':
                         type=int, help='number of k for kfold validation')
 
     parser.add_argument('--patience',
-                        default=False,
+                        default=100,
                         type=int or bool, help='False for no patience training')
 
     parser.add_argument('--is_debug',
@@ -100,6 +97,19 @@ if __name__ == '__main__':
                         type=bool, help='if is true, runs on cpu, trainset and testset are the same set.')
 
     args = parser.parse_args()
+
+    # define your model here
+    lr = 1e-3
+    channel = 2
+    n_gnn_layers = 3
+    n_prim_caps = 128
+    n_digit_caps = 4
+    n_caps_layers = 3
+    n_routing_iters = 3
+    is_share_channel = True
+    dropout_p = 0.1
+
+
 
     if args.is_debug:
         args.n_kfold = 2
