@@ -55,6 +55,7 @@ class Trainer(object):
     def train_step(self, model, batch):
         assert isinstance(model, Model)
         x, edge_index, batch, y = batch.x, batch.edge_index, batch.batch, batch.y
+        y = y.to(torch.long)
         loss = model(x.to(self.device), edge_index.to(self.device), batch.to(self.device), y.to(self.device))
         loss.backward()
         self.optimizer.step()
