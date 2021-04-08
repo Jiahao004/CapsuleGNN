@@ -28,8 +28,9 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 
 all the experiment are done with the hyperparameters below:
 
-| learning_rate           | 0.001 |
+|Parameters Name          |Val    |
 |-------------------------|:-----:|
+| learning_rate           | 0.001 |
 | patience                | 100   |
 | n_channels              | 2     |
 | n_gnn_layers            | 3     |
