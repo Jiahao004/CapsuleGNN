@@ -7,7 +7,7 @@ def preparing(name, file_path='raw'):
         os.makedirs(file_path)
     dataset = TUDataset(root=file_path, name=name, use_node_attr=True)
     d_node = dataset.num_node_features
-    n_class = dataset.num_classes
+    n_class = int(dataset.num_classes)
 
     # for more details about TUDataset, see https://chrsmrrs.github.io/datasets/docs/datasets/
     return dataset, d_node, n_class
