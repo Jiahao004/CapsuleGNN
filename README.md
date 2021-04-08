@@ -21,7 +21,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 | CapsuleGNN | acc    | macro-f1 | micro-f1 |
 |------------|:------:|:--------:|:--------:|
 | MUTAG      | 0.8036 | 0.7254   | 0.8036   |
-| ENZYMES    |        |          |          |
+| ENZYMES    | 0.6550 | 0.6524   | 0.6550   |
 | MSRC_9     |        |          |          |
 | COLLAB     |        |          |          |
 | COLORS-3   |        |          |          |
