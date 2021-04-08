@@ -22,21 +22,20 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 |------------|:------:|:--------:|:--------:|
 | MUTAG      | 0.8036 | 0.7254   | 0.8036   |
 | ENZYMES    | 0.6550 | 0.6524   | 0.6550   |
-| MSRC_9     |        |          |          |
+| MSRC_9     | 0.9005 | 0.8622   | 0.9005   |
 | COLLAB     |        |          |          |
 | COLORS-3   |        |          |          |
 
 all the experiment are done with the hyperparameters below with 5 fold cross validation:
-
-|Parameters Name          |Val    |
-|-------------------------|:-----:|
-| learning_rate           | 0.001 |
-| patience                | 100   |
-| n_channels              | 2     |
-| n_gnn_layers            | 3     |
-| n_prim_caps             | 128   |
-| n_digit_caps per layer  | 4     |
-| n_caps_layers           | 3     |
-| n_routing_iterations    | 3     |
-| share_prim_caps_weights | TRUE  |
-| dropout_p               | 0.1   |
+|Parameters Name          |Val       |
+|-------------------------|:--------:|
+| learning_rate           | 0.001    |
+| patience                | 100 or 10|
+| n_channels              | 2        |
+| n_gnn_layers            | 3        |
+| n_prim_caps             | 128      |
+| n_digit_caps per layer  | 4        |
+| n_caps_layers           | 3        |
+| n_routing_iterations    | 3        |
+| share_prim_caps_weights | TRUE     |
+| dropout_p               | 0.1      |
