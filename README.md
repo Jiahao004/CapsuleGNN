@@ -15,7 +15,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 
 
 
-## Tasks Experiment
+## Experiments
 
 
 | CapsuleGNN | acc    | macro-f1 | micro-f1 |
