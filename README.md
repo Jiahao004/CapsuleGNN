@@ -26,7 +26,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 | COLLAB     |        |          |          |
 | COLORS-3   |        |          |          |
 
-all the experiment are done with the hyperparameters below:
+all the experiment are done with the hyperparameters below with 5 fold cross validation:
 
 |Parameters Name          |Val    |
 |-------------------------|:-----:|
