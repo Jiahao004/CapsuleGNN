@@ -44,7 +44,7 @@ def main():
 
         model = Model(n_class, d_node, d_node * channel, n_gnn_layers,
                       n_prim_caps, n_digit_caps, d_node, n_caps_layers, channel, n_routing_iters,
-                      is_share_channel, dropout_p).to(device)
+                      is_precaps_share, dropout_p).to(device)
         optimizer = optim.Adam(model.parameters(), lr)
         trainer = Trainer(optimizer, args.patience, device)
 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
     n_digit_caps = 4
     n_caps_layers = 3
     n_routing_iters = 3
-    is_share_channel = True
+    is_precaps_share = True
     dropout_p = 0.1
 
 
