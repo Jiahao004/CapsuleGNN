@@ -1,4 +1,4 @@
-# CapsuleGNN
+# Pytorch Capsule GNN
 A pytorch version of [Xinyi Z, Chen L. Capsule graph neural network[C], International conference on learning representations. 2018.](https://openreview.net/forum?id=Byl8BnRcYm)
 
 All the [datasets in torch-geometric](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html) can be used for this work.
