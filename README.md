@@ -1,7 +1,7 @@
 # CapsuleGNN
 A pytorch version of [Xinyi Z, Chen L. Capsule graph neural network[C], International conference on learning representations. 2018.](https://openreview.net/forum?id=Byl8BnRcYm)
 
-All the [dataset in torch-geometric](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html) can be used for this work.
+All the [datasets in torch-geometric](https://pytorch-geometric.readthedocs.io/en/latest/modules/datasets.html) can be used for this work.
 
 ## Dependencies
 
@@ -16,7 +16,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 
 
 ## Experiments
-Since i all the dataset are single label classification task, the acc and micro-f1 are of the same value.
+Since all the datasets are single label classification tasks, the acc and micro-f1 are of the same value.
 
 | CapsuleGNN | acc    | macro-f1 | micro-f1 |
 |------------|:------:|:--------:|:--------:|
@@ -26,7 +26,7 @@ Since i all the dataset are single label classification task, the acc and micro-
 | COLLAB     |        |          |          |
 | COLORS-3   | 0.8350 | 0.8264   | 0.8350   |
 
-all the experiment are done with the hyperparameters below with 5 fold cross validation:
+all the experiments are done with the hyperparameters below with 5 fold cross validation:
 |Parameters Name          |Val       |
 |-------------------------|:--------:|
 | learning_rate           | 0.001    |
@@ -39,3 +39,4 @@ all the experiment are done with the hyperparameters below with 5 fold cross val
 | n_routing_iterations    | 3        |
 | share_prim_caps_weights | TRUE     |
 | dropout_p               | 0.1      |
+patience is based on the training set loss
