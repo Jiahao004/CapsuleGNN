@@ -39,4 +39,6 @@ all the experiments are done with the hyperparameters below with 5 fold cross va
 | n_routing_iterations    | 3        |
 | share_prim_caps_weights | TRUE     |
 | dropout_p               | 0.1      |
+
+
 patience is based on the training set loss
