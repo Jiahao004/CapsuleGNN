@@ -24,7 +24,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 | ENZYMES    | 0.6550 | 0.6524   | 0.6550   |
 | MSRC_9     | 0.9005 | 0.8622   | 0.9005   |
 | COLLAB     |        |          |          |
-| COLORS-3   |        |          |          |
+| COLORS-3   | 0.8350 | 0.8264   | 0.8350   |
 
 all the experiment are done with the hyperparameters below with 5 fold cross validation:
 |Parameters Name          |Val       |
