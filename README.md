@@ -16,7 +16,7 @@ the runnable file is the main.py file, Capsule GNN model is defined in model.py,
 
 
 ## Experiments
-
+Since i all the dataset are single label classification task, the acc and micro-f1 are of the same value.
 
 | CapsuleGNN | acc    | macro-f1 | micro-f1 |
 |------------|:------:|:--------:|:--------:|
