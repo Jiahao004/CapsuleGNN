@@ -104,7 +104,7 @@ if __name__ == '__main__':
     n_gnn_layers = 3
     n_prim_caps = 128
     n_digit_caps = 4
-    n_caps_layers = 3
+    n_caps_layers = 2
     n_routing_iters = 3
     is_precaps_share = True
     dropout_p = 0.1
