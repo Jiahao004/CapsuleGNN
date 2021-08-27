@@ -39,6 +39,6 @@ all the experiments are done with the hyperparameters below with 5 fold cross va
 | n_routing_iterations    | 3        |
 | share_prim_caps_weights | TRUE     |
 | dropout_p               | 0.1      |
-
-
 patience is based on the training set loss
+
+One should set n_caps_layers to 2, to make the conventional capusle network in Hinton's paper.
